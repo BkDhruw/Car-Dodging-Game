@@ -184,27 +184,47 @@
             }
         }
 
+        // function moveEnemy(myCar) {
+        //     let enemyCarList = document.querySelectorAll('.enemyCar');
+        //     enemyCarList.forEach(function(enemyCar) {
+        //         if (isCollide(myCar, enemyCar)) {
+        //             endGame();
+        //             clearInterval(id)
+        //         }
+
+        //         //scoreUpdate(enemyCar.y, player.y)
+        //         if (enemyCar.y - 60 == player.y + 91) {
+        //             player.score += 10;
+        //         }
+        //         if (enemyCar.y >= 750) {
+        //             enemyCar.y = -300;
+        //             enemyCar.style.left = Math.floor(Math.random() * 350) + "px";
+        //         }
+        //         enemyCar.y += player.speed;
+        //         enemyCar.style.top = enemyCar.y + "px";
+        //     })
+
+        // }
+
         function moveEnemy(myCar) {
-            let enemyCarList = document.querySelectorAll('.enemyCar');
-            enemyCarList.forEach(function(enemyCar) {
-                if (isCollide(myCar, enemyCar)) {
-                    endGame();
-                    clearInterval(id)
-                }
-
-                //scoreUpdate(enemyCar.y, player.y)
-                if (enemyCar.y - 60 == player.y + 91) {
-                    player.score += 10;
-                }
-                if (enemyCar.y >= 750) {
-                    enemyCar.y = -300;
-                    enemyCar.style.left = Math.floor(Math.random() * 350) + "px";
-                }
-                enemyCar.y += player.speed;
-                enemyCar.style.top = enemyCar.y + "px";
-            })
-
+    let enemyCarList = document.querySelectorAll('.enemyCar');
+    enemyCarList.forEach(function(enemyCar) {
+        if (isCollide(myCar, enemyCar)) {
+            endGame();
+            clearInterval(id);
         }
+
+        if (enemyCar.y > window.innerHeight) {
+            enemyCar.y = -300;
+            enemyCar.style.left = Math.floor(Math.random() * 350) + "px";
+            player.score += 10; // Increment score when an enemy car moves past the player’s car
+        }
+        
+        enemyCar.y += player.speed;
+        enemyCar.style.top = enemyCar.y + "px";
+    });
+}
+
 
         function runGame() {
 
